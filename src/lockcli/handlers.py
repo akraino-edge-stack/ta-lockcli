@@ -72,7 +72,7 @@ class CLILockHandler(CLIHandler):
     def __call__(self, args):
         self._init_api(args.server, args.port, args.verbose)
         lock = etcd.Lock(self.client, args.id)
-        result = lock.acquire(blocking=False, lock_ttl=args.timeout)
+        result = lock.acquire(blocking=True, lock_ttl=args.timeout)
         if not result:
             raise Exception('Lock taken!')
 
